@@ -6,22 +6,6 @@ from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask("Emotion Detector")
 
-@app.route("/detect_emotion", methods=["POST"])
-def detect_emotion():
-    data = request.get_json()
-    text_to_analyze = data.get("text", "").strip()
-
-    if not text_to_analyze:
-        return jsonify({"error": "Invalid text! Please try again!"}), 400
-
-    response = emotion_detector(text_to_analyze)
-    dominant_emotion = response.get("dominant_emotion")
-
-    if dominant_emotion is None:
-        return jsonify({"error": "Invalid text! Please try again!"}), 400
-
-    return jsonify(response)
-
 
 @app.route("/emotionDetector")
 def emotion_analyzer():
